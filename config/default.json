@@ -1,0 +1,7 @@
+{
+	"SQS": {
+		"queueUrl": "https://sqs.eu-west-1.amazonaws.com/321338012591/logging-queue",
+		"region": "eu-west-1",
+		"batchSize": 1
+	}
+}

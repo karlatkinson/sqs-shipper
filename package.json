@@ -1,0 +1,23 @@
+{
+  "name": "sqs-shipper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karlatkinson/sqs-shipper.git"
+  },
+  "author": "Karl Atkinson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karlatkinson/sqs-shipper/issues"
+  },
+  "homepage": "https://github.com/karlatkinson/sqs-shipper",
+  "dependencies": {
+    "config": "^1.14.0",
+    "sqs-consumer": "^2.2.0"
+  }
+}
