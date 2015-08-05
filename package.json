@@ -18,7 +18,8 @@
   "homepage": "https://github.com/karlatkinson/sqs-shipper",
   "dependencies": {
     "config": "^1.14.0",
-    "sqs-consumer": "^2.2.0"
+    "sqs-consumer": "^2.2.0",
+    "wascally": "^0.2.7"
   },
   "devDependencies": {
     "mocha": "^2.2.5"

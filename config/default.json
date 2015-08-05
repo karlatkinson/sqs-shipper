@@ -1,7 +1,26 @@
 {
-	"SQS": {
-		"queueUrl": "https://sqs.eu-west-1.amazonaws.com/321338012591/logging-queue",
-		"region": "eu-west-1",
-		"batchSize": 1
-	}
+    "SQS": {
+        "queueUrl": "https://sqs.eu-west-1.amazonaws.com/321338012591/logging-queue",
+        "region": "eu-west-1",
+        "batchSize": 1
+    },
+    "RabbitMQ": {
+        "connection": {
+            "user": "guest",
+            "pass": "guest",
+            "server": [ "192.168.59.103" ],
+            "port": 5672
+        },
+        "exchanges": [{
+            "name": "config-ex.1",
+            "type": "fanout"
+        }],
+        "queues": [{
+            "name": "config-q.1"
+        }],
+        "bindings": [{
+            "exchange": "config-ex.1",
+            "target": "config-q.1"
+        }]
+    }
 }
