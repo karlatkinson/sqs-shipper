@@ -1,23 +1,12 @@
-var Consumer = require('sqs-consumer');
-var logger = require('./logger');
-var sqsConfig = require('config').get('SQS');
+var logger = require('./lib/logger');
+var messageHandler = require('./lib/messageHandler');
+var consumerFactory = require('./lib/consumerFactory');
 
-var app = Consumer.create({
-  queueUrl: sqsConfig.queueUrl,
-  region: sqsConfig.region,
-  batchSize: sqsConfig.batchSize,
-  handleMessage: function (message, done) {
-  	var messageString = JSON.stringify(message);
-  	logger.info('handled message ' + message.MessageId);
-  	logger.info('message body: ' + message.Body);
+var consumer = consumerFactory.create(messageHandler);
 
-    done();
-  }
+consumer.on('error', function (err) {
+    logger.error(err.message);
 });
 
-app.on('error', function (err) {
-  logger.error(err.message);
-});
-
-app.start();
+consumer.start();
 logger.info('sqs-shipper started');
