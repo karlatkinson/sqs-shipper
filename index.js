@@ -1,19 +1,31 @@
 var logger = require('./lib/logger');
-var messageHandler = require('./lib/messageHandler');
-var consumerFactory = require('./lib/consumerFactory');
-var producerFactory = require('./lib/producerFactory');
+var MessageHandler = require('./lib/messageHandler');
+var Consumer = require('./lib/consumerFactory');
+var Producer = require('./lib/producerFactory');
 
-var consumer = consumerFactory.create(messageHandler);
+var producer = Producer.create();
+var handler = MessageHandler.create(producer);
+var consumer = Consumer.create(handler);
 
 consumer.on('error', function (err) {
     logger.error(err.message);
 });
 
-producerFactory.create(function () {
-    consumer.start();
-    logger.info('sqs-shipper started');
-    producerFactory.publish('hello', function () {
-        logger.info('message published');
-    });
-
+consumer.on('message_received', function (message) {
+    logger.info('message_received');
 });
+
+consumer.on('message_processed', function (message) {
+    logger.info('message_processed');
+});
+
+producer.connect(function () {
+    logger.info('producer connected, starting consumer....');
+    consumer.start();
+}, handleError);
+
+logger.info('sqs-shipper started');
+
+function handleError(err) {
+    logger.error(err);
+};

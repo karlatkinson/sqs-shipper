@@ -9,7 +9,8 @@
             "user": "guest",
             "pass": "guest",
             "server": [ "192.168.59.103" ],
-            "port": 5672
+            "port": 5672,
+            "timeout": 2000
         },
         "exchanges": [{
             "name": "config-ex.1",
